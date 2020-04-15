@@ -39,14 +39,14 @@ public class RecyclerViewControl extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recycleview_main, null);
+        View view = inflater.inflate(R.layout.recycleview_main,null);
         Context context = view.getContext();
         RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
 
-        List itemPicture = new ArrayList<>(Arrays.asList(picture));
-        List itemName = new ArrayList<>(Arrays.asList(name));
+        List<Integer> itemPicture = new ArrayList<>(Arrays.asList(picture));
+        List<String> itemName = new ArrayList<>(Arrays.asList(name));
 
         RecyclerView.Adapter rAdapter = new RecyclerViewAdapter(itemPicture, itemName);
         recyclerView.setAdapter(rAdapter);

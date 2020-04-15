@@ -34,16 +34,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_items, parent, false);
 
         return new ViewHolder(view);
     }
 
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setImageResource(pictures.get(position));
-        holder.textView.setText(names.get(position));
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ViewHolder vh = (ViewHolder) holder;
+        vh.imageView.setImageResource(pictures.get(position));
+        vh.textView.setText(names.get(position));
     }
 
     @Override
