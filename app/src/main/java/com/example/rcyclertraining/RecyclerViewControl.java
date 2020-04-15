@@ -11,7 +11,26 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class RecyclerViewControl extends Fragment {
+
+    private static final Integer[] picture = {
+            R.drawable.eiro, R.drawable.mitani,
+            R.drawable.uehara, R.drawable.fukada,
+            R.drawable.suzumori, R.drawable.anzai,
+            R.drawable.kawai, R.drawable.kuruki,
+            R.drawable.matsushita, R.drawable.matsumoto
+    };
+
+    private static final String[] name = {
+            "絵色千佳", "美谷朱里", "上原亜衣",
+            "深田えいみ", "涼森れむ", "安斎らら",
+            "河合あすな", "久留木玲", "松下紗栄子", "松本いちか"
+    };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +44,12 @@ public class RecyclerViewControl extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
+
+        List itemPicture = new ArrayList<>(Arrays.asList(picture));
+        List itemName = new ArrayList<>(Arrays.asList(name));
+
+        RecyclerView.Adapter rAdapter = new RecyclerViewAdapter(itemPicture, itemName);
+        recyclerView.setAdapter(rAdapter);
 
         return view;
     }
