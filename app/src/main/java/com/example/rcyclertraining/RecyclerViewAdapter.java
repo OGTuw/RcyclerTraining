@@ -3,53 +3,37 @@ package com.example.rcyclertraining;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
-    private List<Integer> pictures;
-    private List<String> names;
+    private List<Row> list;
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        ImageView imageView;
-        TextView textView;
-
-        ViewHolder(View v) {
-            super(v);
-            imageView = v.findViewById(R.id.picture);
-            textView = v.findViewById(R.id.name);
-        }
+    RecyclerViewAdapter(List<Row> list) {
+        this.list = list;
     }
 
-    RecyclerViewAdapter(List itemPictures, List itemNames) {
-        this.pictures = itemPictures;
-        this.names = itemNames;
-    }
-
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recyclerview_items, parent, false);
 
-        return new ViewHolder(view);
+        return new RecyclerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ViewHolder vh = (ViewHolder) holder;
-        vh.imageView.setImageResource(pictures.get(position));
-        vh.textView.setText(names.get(position));
+    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+        holder.imageView.setImageResource(list.get(position).getPicture());
+        holder.textView.setText(list.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return names.size();
+        return list.size();
     }
 }

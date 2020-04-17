@@ -6,13 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RecyclerViewControl extends Fragment {
@@ -45,10 +44,7 @@ public class RecyclerViewControl extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
 
-        List<Integer> itemPicture = new ArrayList<>(Arrays.asList(picture));
-        List<String> itemName = new ArrayList<>(Arrays.asList(name));
-
-        RecyclerView.Adapter rAdapter = new RecyclerViewAdapter(itemPicture, itemName);
+        RecyclerView.Adapter rAdapter = new RecyclerViewAdapter(createRow());
         recyclerView.setAdapter(rAdapter);
 
         return view;
@@ -60,6 +56,18 @@ public class RecyclerViewControl extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    }
+
+    private List<Row> createRow() {
+        List<Row> rowData = new ArrayList<>();
+        for (int i = 0; i < name.length; i++) {
+            Row row = new Row();
+            row.setName(name[i]);
+            row.setPicture(picture[i]);
+
+            rowData.add(row);
+        }
+        return rowData;
     }
 }

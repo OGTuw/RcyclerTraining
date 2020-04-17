@@ -1,11 +1,8 @@
 package com.example.rcyclertraining;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
