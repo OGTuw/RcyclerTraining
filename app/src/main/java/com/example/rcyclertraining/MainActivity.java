@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerViewControl recyclerViewControl = new RecyclerViewControl();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.a_video_actress_list, recyclerViewControl).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, recyclerViewControl).commit();
     }
 }
