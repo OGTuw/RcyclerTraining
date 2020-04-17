@@ -40,7 +40,8 @@ public class RecyclerViewControl extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycleview_main,null);
         Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view;
+
+        RecyclerView recyclerView = view.findViewById(R.id.a_video_actress_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
 
