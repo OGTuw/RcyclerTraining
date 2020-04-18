@@ -1,6 +1,8 @@
 package com.example.rcyclertraining;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class RecyclerViewControl extends Fragment {
 
-    private static final Integer[] picture = {
+    public static final Integer[] picture = {
             R.drawable.eiro, R.drawable.mitani,
             R.drawable.uehara, R.drawable.fukada,
             R.drawable.suzumori, R.drawable.anzai,
@@ -24,7 +26,13 @@ public class RecyclerViewControl extends Fragment {
             R.drawable.matsushita, R.drawable.matsumoto
     };
 
-    private static final String[] name = {
+    public static final String[] name = {
+            "絵色千佳", "美谷朱里", "上原亜衣",
+            "深田えいみ", "涼森れむ", "安斎らら",
+            "河合あすな", "久留木玲", "松下紗栄子", "松本いちか"
+    };
+
+    public static final String[] size = {
             "絵色千佳", "美谷朱里", "上原亜衣",
             "深田えいみ", "涼森れむ", "安斎らら",
             "河合あすな", "久留木玲", "松下紗栄子", "松本いちか"
@@ -41,12 +49,23 @@ public class RecyclerViewControl extends Fragment {
         View view = inflater.inflate(R.layout.recycleview_main,null);
         Context context = view.getContext();
 
-        RecyclerView recyclerView = view.findViewById(R.id.a_video_actress_list);
+        final RecyclerView recyclerView = view.findViewById(R.id.a_video_actress_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
 
-        RecyclerView.Adapter rAdapter = new RecyclerViewAdapter(createRow());
+        RecyclerViewAdapter rAdapter = new RecyclerViewAdapter(createRow());
         recyclerView.setAdapter(rAdapter);
+
+        rAdapter.setOnItemClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                int index = recyclerView.getChildLayoutPosition(view);
+                Bundle bundle = new Bundle();
+                bundle.putInt("Index", index);
+                FragmentDetail detail = new FragmentDetail();
+                detail.setArguments(bundle);
+            }
+        });
 
         return view;
     }

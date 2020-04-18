@@ -20,18 +20,17 @@
     <ImageView
         android:id="@+id/image_picture"
         android:layout_width="match_parent"
-        android:layout_height="579dp"
-        app:srcCompat="@drawable/kuruki" />
+        android:layout_height="579dp" />
 
     <TextView
         android:id="@+id/text_name"
         android:layout_width="match_parent"
         android:layout_height="82dp"
-        android:text="久留木玲" />
+        android:text="" />
 
     <TextView
         android:id="@+id/text_three_size"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        android:text="83 - 59 - 85" />
+        android:text="" />
 </LinearLayout>
