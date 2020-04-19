@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -20,17 +21,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void onActivityReenter(int resultCode, Intent data) {
         FragmentDetail detail = new FragmentDetail();
+        RecyclerViewControl rv = new RecyclerViewControl();
+        Serializable run = data.getDataString();
 
-        Serializable run = data.getSerializableExtra("run");
-
-        switch((String) run) {
-            case "HOME":
+        switch((String)run) {
+            case "Home":
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, recyclerViewControl).commit();
             break;
 
-            case "change":
+            case "Change":
             getSupportFragmentManager().beginTransaction().replace(R.id.frame_main, detail).commit();
             break;
+
+            default:
+            Toast.makeText(rv.getContext(), "null", Toast.LENGTH_LONG).show();
         }
     }
 }
