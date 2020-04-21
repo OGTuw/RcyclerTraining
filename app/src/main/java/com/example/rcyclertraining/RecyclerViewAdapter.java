@@ -30,13 +30,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerViewHolder holder, int position) {
         holder.imageView.setImageResource(list.get(position).getPicture());
         holder.textView.setText(list.get(position).getName());
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onClick(view);
+//                listener.onClick(view);
+//                  ↓
+                // onClickの引数で渡されるのはholder.textView
+                // 渡した先で必要なのはholder.itemView
+                listener.onClick(holder.itemView);
             }
         });
 

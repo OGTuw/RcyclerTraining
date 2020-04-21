@@ -59,6 +59,7 @@ public class RecyclerViewControl extends Fragment {
         rAdapter.setOnItemClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                // ここで必要になるViewはViewHolderのitemView
                 int index = recyclerView.getChildAdapterPosition(view);
                 Bundle bundle = new Bundle();
                 bundle.putInt("Index", index);
