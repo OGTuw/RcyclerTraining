@@ -1,13 +1,10 @@
 package com.example.rcyclertraining;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
-import java.util.List;
 
 public class FragmentDetail extends Fragment {
     @Override
@@ -40,9 +36,8 @@ public class FragmentDetail extends Fragment {
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent data = new Intent();
-                data.putExtra("run", "Home" );
-                getActivity().onActivityReenter(Activity.RESULT_OK, data);
+                RecyclerViewControl control = new RecyclerViewControl();
+                getFragmentManager().beginTransaction().replace(R.id.frame_main, control).commit();
             }
         });
     }
@@ -63,11 +58,6 @@ public class FragmentDetail extends Fragment {
         textName.setText(name[index]);
         Glide.with(getContext()).load(picture[index]).into(img);
         textSize.setText(size[index]);
-
-        Intent data = new Intent();
-        data.putExtra("run", "Change");
-
-        getActivity().onActivityReenter(Activity.RESULT_OK, data);
     }
 
 
